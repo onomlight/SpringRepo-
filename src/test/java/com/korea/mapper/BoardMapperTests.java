@@ -1,7 +1,5 @@
 package com.korea.mapper;
 
-import static org.junit.Assert.fail;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -11,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.korea.domain.BoardVO;
-import com.korea.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -52,14 +49,14 @@ public class BoardMapperTests {
 //		log.info("result :" + result);
 		
  
-		@Autowired
-		private BoardMapper mapper;
+//		@Autowired
+//		private BoardMapper mapper;
 		
-		@Autowired
-		private BoardService service;
-		
-		@Test 
-		public void testFunc() {
+//		@Autowired
+//		private BoardService service;
+//		
+//		@Test 
+//		public void testFunc() {
 			 
 //			List<BoardVO> list = mapper.getList();
 //			
@@ -68,13 +65,43 @@ public class BoardMapperTests {
 //			List<BoardVO> list = service.getList();
 //			list.forEach(dto -> log.info(dto));
 			
-			log.info(service);
-			List<BoardVO> list =service.getList();
+//			log.info(service);
+//			List<BoardVO> list =service.getList();
 			 
-			 
-		}
-	}
+//	@Autowired
+//	private BoardMapper mapper;
+//		@Test
+//		public void testgetListWithPaging() {
+//			Criteria cri = new Criteria();
+//			List<BoardVO>list =mapper.getListWithPaging(cri);
+//			list.forEach(board -> log.info(board));
+//		}
+//			 
+//	}
+		
 
 	
+//	@Autowired
+//	private BoardService service;
+//	
+//	@Test
+//	public void testFunc() {
+//		
+//		log.info(service);
+//		
+//		service.getList(new Criteria(2,10)).forEach(board->log.info(board));
+//	}
+		
+	//}
+	@Autowired
+	private BoardMapper mapper;
+	
+	@Test
+	public void Test() {
+		List<BoardVO> list = mapper.test("³»¿ë2");
+		log.info("LIST : " + list);
+	}
+	
+}
 	
 

@@ -11,7 +11,6 @@
 	<title>Document</title>
 	
 	<%@include file="/resources/includes/link.jsp" %>
-	
 
 </head>
 <body>
@@ -23,6 +22,10 @@
 			<%@include file="/resources/includes/nav.jsp" %>
 		</div>
 		<div id="contents">
+		<div class=mt-3 style=text-align:right;>
+				<a class="btn btn-secondary" href="/board/register">글등록</a>
+			</div>
+			
 		<!-- 목록 화면 처리  -->
 			<table class="table table-striped table-hover table-bordered mt-3">
 				<tr>
@@ -37,7 +40,7 @@
 				<c:forEach items="${list}" var="board">
 				<tr>
 					<td><c:out value="${board.bno }"/></td>
-					<td><c:out value="${board.title }"/></td>
+					<td><a class="move" href='<c:out value="${board.bno }"/>'><c:out value="${board.title}"/></a></td>
 					<td><c:out value="${board.writer }"/></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}"/></td>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate}"/></td>
@@ -46,10 +49,6 @@
 				</c:forEach>
 			</table>
 			
-				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-				  Launch static backdrop modal
-				</button>
 				
 
 				<!-- Modal 시작 -->
@@ -70,24 +69,106 @@
 				    </div>
 				  </div>
 				</div>
+				<!-- 페이징 처리 -->
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				   
+				    <!-- PREV -->
+				    <c:if test="${pageMaker.prev}">
+					   	<li class="page-item">
+					      <a class="page-link" href="#" tabindex="-1" aria-disabled="Previous">
+					      	<span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+				    </c:if>
+				    <!-- NUMBER -->
+				   <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage }">
+				    	<li class="page-item pageNumber"><a class="page-link" href="${num}">${num }</a></li>
+				   </c:forEach>
+				    
+				    		<!-- 페이지 액션 처리 -->
+				    			<form id="actionForm" action="/board/list" method="get">
+				    				<input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum }'>
+				    				<input type="hidden" name="amount" value='${pageMaker.cri.amount }'>
+				    				<input type="hidden" name="keyword" value='${pageMaker.cri.keyword }'>
+				    				<input type="hidden" name="type" value='${pageMaker.cri.type }'>
+				    				
+				    			</form>
+							    <script>
+							    	var actionForm= $("#actionForm");
+							    	$(document).ready(function () {
+										$(".pageNumber a").on("click",function(e){
+											e.preventDefault();
+											console.log("clicked");
+											actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+											actionForm.submit();
+										})
+									})
+									
+									$(document).ready(function(){
+										$(".move").on("click",function(e){
+											e.preventDefault();
+											actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
+											actionForm.attr("action","/board/get");
+											actionForm.submit();
+										})
+									})
+									
+									$(".next a").on("click",function(e){
+										e.preventDefault();
+										PageNum = Math.ceil((${pageMaker.cri.pageNum}+9)/10+9)
+										actionForm.find("input[name='pageNum']").val(PageNum);
+										
+										actionForm.submit();
+									})
+									
+									$(".prev a").on("click",function(e){
+										e.preventDefault();
+										PageNum = Math.ceil((${pageMaker.cri.pageNum}-9)/10+9)
+										actionForm.find("input[name='pageNum']").val(PageNum);
+										
+										actionForm.submit();
+									})
+							    </script>
+				    
+				    <!-- NEXT -->
+				        <c:if test="${pageMaker.next}">
+				    <li class="page-item">
+				      <a class="page-link" href="#" aria-label="Next">
+				      	<span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				  	</c:if>
+				  </ul>
+				  
+				</nav>
 				<!-- 모달끝 -->
+				
+				<script>
+					$(document).ready(function() {
+					
+						var result = '<c:out value="${result}"/>';
+						//alert(result);
+						checkModal(result);
+						
+						history.replaceState({},null,null);
+						function checkModal(result) {
+							if(result===''){
+								return;
+							}
+							if(parseInt(result)>0){
+								$(".modal-body").html("게시글 : " + parseInt(result)+ " 번이 등록되었습니다.");
+							}
+							$("#myModal").modal("show")
+							
+						}
+					})
+				</script>
+				
+				
 				
 		</div>
 	</div>
-<!-- 	<script>
-	 	$(document).ready(function(){
-	 		var result = '<c:out value="${result}" .>';
-	 		checkModal (result);
-	 		function checkModal(result){
-	 			if(result===''){
-	 				return;
-	 			}
-	 			if(parseInt(result)>0){
-	 				$.(".modal-body").html("게시글 : " + parseInt(result)+" 번이 등록되었습니다.")
-	 			}
-	 			$("#myModal").modal("show");
-	 		}
-	 	}) 31p안됨
-	</script> -->
+
 </body>
 </html>

@@ -4,15 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.korea.domain.BoardVO;
+import com.korea.domain.Criteria;
 
 public interface BoardMapper {
 	
-	@Select("select * from tbl_board1 where bno>0")
+	@Select("select * from tbl_board1 where bno>0  order by bno desc")
 	public List<BoardVO> getList() ;
 	
 	public List<BoardVO> getListXML();
@@ -53,4 +55,13 @@ public interface BoardMapper {
 	("update tbl_board1 set title=#{title},content=#{content},writer=#{writer},updateDate=sysdate where bno=#{bno}")
 	public int update(BoardVO board);
 	public int updateXML(BoardVO board);
+	
+	public List<BoardVO> getListWithPaging(Criteria cri);
+	//추가한내용
+	@Select("select count(*) from tbl_board1 where bno>0")
+	public int getTotalCount(Criteria cri);
+	
+
+	
+	public List<BoardVO> test(String content);
 }
