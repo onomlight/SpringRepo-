@@ -62,6 +62,8 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	 
+	
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		log.info("register : " + board);
