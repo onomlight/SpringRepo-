@@ -14,7 +14,7 @@
 <script>
 	function requestreply(){
 		
-		var info = {
+		var info = { 
 				"bno" : $("#bno").val(),
 				"reply" : $("#reply").val(),
 				"replyer" : $("#replyer").val()
