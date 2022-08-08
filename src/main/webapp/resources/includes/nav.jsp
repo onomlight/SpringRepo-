@@ -31,8 +31,15 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      	<select	name=type class="form-select me-2">
+      		<option value="T" selected>제목</option>
+      		<option value="C">내용</option>
+      		<option value="W">작성자</option>
+      	</select>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name=keyword>
+        <input type="hidden" name="pageNum" value='${pageMaker.cri.pageNum }'>
+        <input type="hidden" name="amount" value='${pageMaker.cri.amount }'>
+        <button class="btn btn-outline-success" type="submit">검색</button>
       </form>
     </div>
   </div>
