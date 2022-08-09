@@ -54,10 +54,10 @@ public class ReplyMapperTests {
 		log.info("UPDATE COUNT : " + count);
 	}
 	
-	@Test
-	public void DeleteTest() {
-		mapper.delete(1);
-	}
+//	@Test
+//	public void DeleteTest() {
+//		mapper.delete(1);
+//	}
 	
 	@Test
 	public void CreateReply2() {

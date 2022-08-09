@@ -20,7 +20,7 @@
 				
 				"bno" : $("#bno").val(),
 				"reply" : $("#reply").val(),
-				"replyer" : $("replyer").val()
+				"replyer" : $("#replyer").val()
 		};
 		
 		$.ajax({
@@ -28,7 +28,8 @@
 			url : "/replies/new",
 			async : true,
 			data : JSON.stringify(info),
-			dataType : "application/json;charset=UTF-8",
+			dataType : "json",
+			contentType : "application/json; charset=UTF-8",
 			success : function(data) {
 				;
 				
