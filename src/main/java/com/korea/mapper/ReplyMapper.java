@@ -24,6 +24,10 @@ public interface ReplyMapper {
 		// 페이징 처리
 		
 		public List<ReplyVO> getListWithPaging(@Param("cri") Criteria cri, @Param("bno") Long bno);
+		
+		//댓글개수 가져오기
+		
+		public int getCountBuBno(Long bno);
 
 		
 

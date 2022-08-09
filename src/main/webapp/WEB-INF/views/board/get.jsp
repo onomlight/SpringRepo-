@@ -17,6 +17,66 @@
 
 
 <body>
+<script>
+		console.log(replyService);
+		
+		var bnoValue = ${board.bno};
+		
+		
+		//단일 댓글 조회	
+		
+		//replyService.get(6,function(data){console.log(data);})
+		
+		//댓글 수정 Test
+		/*
+		replyService.update(
+			{rno : 5, bno:bnoValue, reply : "Modified Reply!!!!"},
+			function(result){alert("수정완료!");}
+		)
+		*/
+		
+		//댓글 삭제 Test	
+		/*
+		replyService.remove
+		(
+				4,
+				function(count){
+					console.log(count);
+					if(count==="success"){
+						alert("REMOVED");	
+					}
+				},
+				function (err){
+					alert('ERROR...');
+				} 
+		);//remove 함수 끝
+		*/
+		
+		
+		//댓글 조회 Test
+		/*		
+ 		replyService.getList(
+			{bno:bnoValue,page:1},
+			function(list){
+				for(i=0,len=list.length||0;i<len;i++){
+					console.log(list[i]);
+				}
+			}
+		);	 
+		*/
+		
+		//댓글 추가 Test	
+		/* 		
+  
+  			replyService.add(
+			{reply:"JS TEST",replyer:"tester", bno:bnoValue}
+			,
+			function(result){
+				alert("RESULT : " + result);
+			}
+		); 
+		*/
+	</script>
 
 	<div id="wrapper" class="container-md">
 		<div id="top-header">
@@ -57,14 +117,14 @@
 	        	<div class="chat mt-3"  style='height:310px;overflow:auto;'>
 	        		<div class='unit form-control' data-rno="1">    		
 		        		<!-- unit -->
-			        	 	
+			        	 <!-- 	
 			        			<div class='r-header' >
 			        			<strong class='primary-font'>USER00</strong>
 			        			<small class='rdate text-muted'>2022-01-01 13:13</small>	
 			        		</div>
 			        		<div class='r-body'>
 			        				REPLY TEST		
-			        		</div> 
+			        		</div>  -->
 			        	
 	        		</div>
 	        	</div>
@@ -90,7 +150,7 @@
 			})
 		</script>
 		<script>
-$(document).ready(function(){
+			$(document).ready(function(){
 			
 			
 			var bnoValue = ${board.bno};
@@ -124,6 +184,22 @@ $(document).ready(function(){
 				);	//getList 끝	
 			}//showlist 끝	
 			
+			/* 댓글 등록 이벤트 처리  */
+			$("#replybtn").on("click",function(e){
+				var comment = $("#cmt").val();
+				alert(comment);
+				var reply=
+				{
+						reply :comment,
+						replyer : 'anonymous',		//임의 계정으로 - 로그인 처리 후 변경할 것 
+						bno:bnoValue
+				};
+				replyService.add(reply,function(result){
+					//alert(result);
+					$("#cmt").val("");
+					showlist(1);	
+				})
+			})
 		}) //document.ready 끝
 		
 		</script>

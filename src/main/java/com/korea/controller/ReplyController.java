@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.korea.domain.Criteria;
+import com.korea.domain.ReplyPageDTO;
 import com.korea.domain.ReplyVO;
 import com.korea.service.ReplyService;
 
@@ -49,7 +50,7 @@ public class ReplyController {
 				}
 		)
 
-		public ResponseEntity<List<ReplyVO>> getList
+		public ResponseEntity<List<ReplyPageDTO>> getList
 		(
 				@PathVariable("page") int page,
 				@PathVariable("bno") Long bno
@@ -59,7 +60,8 @@ public class ReplyController {
 		Criteria cri = new Criteria(page,10);
 		log.info(cri);
 		
-		return new ResponseEntity<>(service.getList(cri, bno),HttpStatus.OK);
+
+		//return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK); 96¹ø ÇÏ±â
 		}
 		
 		

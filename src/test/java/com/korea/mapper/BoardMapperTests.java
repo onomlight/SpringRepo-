@@ -102,6 +102,31 @@ public class BoardMapperTests {
 		log.info("LIST : " + list);
 	}
 	
+	@Test
+	public void getListTest() {
+		
+	}
+	
+	@Test
+	public void insertTest() {	
+	}
+	@Test
+	public void readTest() {
+		
+	}
+	@Test
+	public void DeleteTest() {
+		
+	}
+	@Test
+	public void UpdateTest() {
+		
+	}
+	@Test
+	public void getTotalCountTest() {
+		
+	}
+	
 }
 	
 

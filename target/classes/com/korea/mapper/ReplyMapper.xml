@@ -30,4 +30,13 @@
 		where bno=#{bno}
 		order by rno asc
 	</select>
+	
+	
+	<!-- 댓글 개수  -->
+	
+	<select id="getCountByBno" resultType="int">
+	<![CDATA[
+		select count(rno) from tbl_reply1 where bno=#{bno}
+	]]>
+	</select>
 </mapper>
