@@ -49,20 +49,33 @@ public class ReplyController {
 						MediaType.APPLICATION_JSON_UTF8_VALUE
 				}
 		)
-
-		public ResponseEntity<List<ReplyPageDTO>> getList
+		public ResponseEntity<ReplyPageDTO>getlist
 		(
 				@PathVariable("page") int page,
 				@PathVariable("bno") Long bno
-		)
+				)
 		{
 		log.info("Get list...");
 		Criteria cri = new Criteria(page,10);
 		log.info(cri);
 		
 
-		//return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK); 96¹ø ÇÏ±â
+		return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK);
 		}
+		
+//		public ResponseEntity<List<ReplyVO>> getList
+//		(
+//				@PathVariable("page") int page,
+//				@PathVariable("bno") Long bno
+//		)
+//		{
+//		log.info("Get list...");
+//		Criteria cri = new Criteria(page,10);
+//		log.info(cri);
+//		
+//
+//		return new ResponseEntity<>(service.getList(cri, bno),HttpStatus.OK);
+//		}
 		
 		
 

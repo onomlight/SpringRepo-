@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.korea.domain.BoardVO;
+import com.korea.domain.Criteria;
 
 import lombok.extern.log4j.Log4j;
 
@@ -93,40 +94,68 @@ public class BoardMapperTests {
 //	}
 		
 	//}
-	@Autowired
-	private BoardMapper mapper;
-	
-	@Test
-	public void Test() {
-		List<BoardVO> list = mapper.test("내용2");
-		log.info("LIST : " + list);
-	}
-	
-	@Test
-	public void getListTest() {
-		
-	}
-	
-	@Test
-	public void insertTest() {	
-	}
-	@Test
-	public void readTest() {
-		
-	}
-	@Test
-	public void DeleteTest() {
-		
-	}
-	@Test
-	public void UpdateTest() {
-		
-	}
-	@Test
-	public void getTotalCountTest() {
-		
-	}
-	
+//	@Autowired
+//	private BoardMapper mapper;
+//	
+////	@Test
+////	public void Test() {
+////		List<BoardVO> list = mapper.test("내용2");
+////		log.info("LIST : " + list);
+////	} 지우기
+//	
+//	@Test
+//	public void getListTest() {
+//		List<BoardVO> list = mapper.getList();
+//		list.forEach(vo->vo.toString());
+//	}
+//	
+//	@Test
+//	public void insertTest() {	
+//		BoardVO board = new BoardVO();
+//		board.setTitle("8월10일");
+//		board.setContent("오전9시30분");
+//		board.setWriter("최문기");
+//		mapper.insert(board);
+//		log.info(board);
+//	}
+//	@Test
+//	public void readTest() {
+//		BoardVO board = mapper.read(181L);
+//		log.info(board);
+//	}
+//	@Test
+//	public void DeleteTest() {
+//		int result = mapper.delete(181L);
+//		log.info("result : " + result);
+//	}
+//	@Test
+//	public void UpdateTest() {
+//		BoardVO board = new BoardVO();
+//		board.setBno(183L);
+//		board.setTitle("시험치기");
+//		board.setContent("무섭다");
+//		board.setWriter("작성자 최문기");
+//		mapper.update(board);
+//		
+//	}
+//	@Test
+//	public void getTotalCountTest() {
+//	      Criteria cri = new Criteria();
+//
+//	        /* 검색조건 */
+////	        cri.setKeyword("테스트");
+//	//
+////	        /* 검색 리스트 */
+////	        List list = mapper.getTotalCount(cri);
+////	        for(int i = 0; i < list.size(); i++) {
+////	            System.out.println("result......." + i + " : " + list.get(i));
+////	        }
+//
+//	        /* 게시글 총 갯수 */
+//	        int result = mapper.getTotalCount(cri);
+//	        System.out.println("게시글 총 개수" + result);
+//	}
+//	
 }
 	
 
